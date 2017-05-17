@@ -1,4 +1,21 @@
-<!-- ft-source-grid-item element demo -->
+<!--
+Copyright 2017 FileThis, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+
+<!-- ft-source-list-item element demo -->
 
 <!-- Imports -->
 <link rel="import" href="../../polymer/polymer.html">
@@ -8,7 +25,7 @@
 
 <!--
 
-An element that renders a FileThis source in a grid list.
+An element that renders information about a FileThis source in a parent grid
 
 @demo demo/index.html
  -->
@@ -18,7 +35,25 @@ An element that renders a FileThis source in a grid list.
 
     <template>
 
-        <ft-source-grid-item></ft-source-grid-item>
+        <div class="layout vertical center">
+
+            <!-- Normal -->
+            <div class="layout horizontal center">
+                <div style="width:115px; font-size:14pt" align="right">Normal:</div>
+                <div style="width:35px;"></div>
+                <ft-source-grid-item id="normal"></ft-source-grid-item>
+            </div>
+
+            <div style="height:25px;"></div>
+
+            <!-- Selected -->
+            <div class="layout horizontal center">
+                <div style="width:115px; font-size:14pt" align="right">Selected:</div>
+                <div style="width:35px;"></div>
+                <ft-source-grid-item id="selected"></ft-source-grid-item>
+            </div>
+
+        </div>
 
     </template>
 
@@ -30,6 +65,38 @@ An element that renders a FileThis source in a grid list.
 
             properties:
             {
+            },
+
+            ready: function()
+            {
+                this._loadFakeSource();
+            },
+
+            _loadFakeSource: function()
+            {
+                var path = "fake-source.json";
+
+                var xmlHttpRequest = new XMLHttpRequest();
+                xmlHttpRequest.overrideMimeType("application/json");
+                xmlHttpRequest.open('GET', path, true);
+                xmlHttpRequest.onreadystatechange = function()
+                {
+                    if (xmlHttpRequest.readyState == 4 &&
+                        xmlHttpRequest.status == "200")
+                    {
+                        var source = JSON.parse(xmlHttpRequest.responseText);
+
+                        // Normal
+                        var sourceNormal = Object.assign({}, source);
+                        normal.source = sourceNormal;
+
+                        // Selected
+                        var sourceSelected = Object.assign({}, source);
+                        selected.source = sourceSelected;
+                        selected.selected = true;
+                    }
+                };
+                xmlHttpRequest.send();
             }
 
         });
