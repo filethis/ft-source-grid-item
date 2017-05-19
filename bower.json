@@ -3,7 +3,7 @@
   "description": "An element that renders a FileThis source in a grid list.",
   "main": "ft-source-grid-item.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.4.0",
+    "polymer": "Polymer/polymer#^1.9.0",
     "iron-label": "PolymerElements/iron-label#^1.0.2"
   },
   "devDependencies": {
