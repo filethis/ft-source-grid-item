@@ -81,8 +81,8 @@ An element that renders information about a FileThis source in a parent grid
                 xmlHttpRequest.open('GET', path, true);
                 xmlHttpRequest.onreadystatechange = function()
                 {
-                    if (xmlHttpRequest.readyState == 4 &&
-                        xmlHttpRequest.status == "200")
+                    if (xmlHttpRequest.readyState === 4 &&
+                        xmlHttpRequest.status === 200)
                     {
                         var source = JSON.parse(xmlHttpRequest.responseText);
 
