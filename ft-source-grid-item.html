@@ -103,7 +103,7 @@ An element that renders a FileThis source thumbnail in a grid list.
                 this.fire('connect', this.source);
             },
 
-            _onSelectedChanged: function()
+            _onSelectedChanged: function(to, from)
             {
                 var interior = this.$.interior;
                 if (this.selected)
