@@ -95,14 +95,14 @@ An element that renders information about a FileThis source in a parent grid
 
                         // Normal
                         var sourceNormal = Object.assign({}, source);
-                        normal.source = sourceNormal;
+                        this.$.normal.source = sourceNormal;
 
                         // Selected
                         var sourceSelected = Object.assign({}, source);
-                        selected.source = sourceSelected;
-                        selected.selected = true;
+                        this.$.selected.source = sourceSelected;
+                        this.$.selected.selected = true;
                     }
-                };
+                }.bind(this);
                 xmlHttpRequest.send();
             }
 
