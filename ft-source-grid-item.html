@@ -40,7 +40,8 @@ An element that renders a FileThis source thumbnail in a grid list.
         </style>
 
         <div id="interior" class="layout vertical center"
-             style="padding-left:15px; padding-top:15px; padding-right:15px;">
+             style="padding-left:15px; padding-top:15px; padding-right:15px;"
+             on-click="_ignoreClick">
 
             <!-- Logo Box -->
             <div class="layout vertical center"
@@ -116,6 +117,11 @@ An element that renders a FileThis source thumbnail in a grid list.
                     interior.style.backgroundColor = "#F6F6F6";
                 else
                     interior.style.backgroundColor = "#FFFFFF";
+            },
+
+            _ignoreClick: function(event, detail)
+            {
+                event.stopPropagation(); // So that we don't toggle the item selection
             }
 
         });
