@@ -1,6 +1,6 @@
 # Project configuration
 NAME=ft-source-grid-item
-VERSION=0.0.10
+VERSION=0.0.11
 LOCAL_PORT=3643
 GITHUB_USER=filethis
 
