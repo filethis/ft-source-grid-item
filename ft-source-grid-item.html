@@ -15,8 +15,12 @@ limitations under the License.
 -->
 
 
+<link rel="import" href="../ft-http-behavior/ft-http-behavior.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="../iron-label/iron-label.html">
+<link rel="import" href="../neon-animation/web-animations.html">
+<link rel="import" href="../paper-tooltip/paper-tooltip.html">
 <link rel="import" href="../polymer/polymer.html">
 
 <!--
@@ -36,43 +40,92 @@ This element displays a single FileThis document source, suitable for use in gri
             :host {
                 display:block;
                 overflow:hidden;
+                position:relative;
                 @apply --ft-source-grid-item;
+                width:182px; height:115px;
+            }
+            .icon-normal
+            {
+                --iron-icon-fill-color:#DDD;
+            }
+            .icon-highlighted
+            {
+                --iron-icon-fill-color:black;
             }
         </style>
 
-        <div id="interior" class="layout vertical center"
-             style="padding-left:15px; padding-top:15px; padding-right:15px;"
-             on-tap="_ignoreClick">
-
+        <!-- Main content -->
+        <div
+            id="interior"
+            class="layout vertical center"
+            style="
+                position:absolute;
+                z-index:1;
+                padding-left:15px; padding-top:15px; padding-right:15px;
+                "
+            on-tap="_ignoreClick"
+        >
             <!-- Logo Box -->
-            <div class="layout vertical center"
-                 on-tap="_onSourceClicked"
-                 style="width:150px; height:65px;
+            <div
+                class="layout vertical center"
+                on-tap="_onSourceClicked"
+                style="
+                    width:150px; height:65px;
                     border:1px solid #DEDEDE;
                     justify-content:center;
-                    cursor:pointer;">
-
+                    cursor:pointer;
+                "
+            >
                 <!-- Logo -->
                 <img
-                    style="width:auto; max-width:100%;"
-                    src="[[source.logoUrl]]">
+                    style="width:auto; max-width:100%; "
+                    src="[[source.logoUrl]]"
+                >
                 </img>
-
             </div>
 
             <!-- Name -->
             <div on-tap="_onSourceClicked"
-                 style="font-family:Arial;
+                style="
+                    font-family:Arial;
                     color:#343434;
-                    width:150px;
+                    width:150px; height:20px;
                     padding-top:8px;
                     text-align:center;
-                    text-overflow:ellipsis; white-space: nowrap; overflow: hidden;
-                    cursor:pointer;">
+                    text-overflow:ellipsis;
+                    white-space:nowrap;
+                    overflow:hidden;
+                    cursor:pointer;
+                   "
+            >
                 [[source.name]]
             </div>
-
         </div>
+
+        <!-- Identify button -->
+        <iron-icon
+            id="identifyButton"
+            icon="visibility"
+            on-tap="_onIdentifyButtonClicked"
+            on-mouseover="_onMouseEnterIdentifyButton"
+            on-mouseout="_onMouseLeaveIdentifyButton"
+            class="icon-normal"
+            style="
+                position:absolute;
+                z-index:2;
+                right:21px; top:18px;
+                width:20px; height:20px;
+                display:none;
+                cursor:pointer;
+                "
+        >
+        </iron-icon>
+
+        <paper-tooltip
+            for="identifyButton"
+        >
+            Identify website
+        </paper-tooltip>
 
     </template>
 
@@ -80,6 +133,11 @@ This element displays a single FileThis document source, suitable for use in gri
         Polymer({
 
             is: 'ft-source-grid-item',
+
+            listeners: {
+                mouseenter: '_onMouseEnterHost',
+                mouseleave: '_onMouseLeaveHost',
+            },
 
             /**
              * Fired when a source is clicked to connect to it.
@@ -106,9 +164,40 @@ This element displays a single FileThis document source, suitable for use in gri
                 }
             },
 
+            _onMouseEnterHost: function(event)
+            {
+                this.$.identifyButton.style.display = "block";
+            },
+
+            _onMouseLeaveHost: function(event)
+            {
+                this.$.identifyButton.style.display = "none";
+            },
+
+            _onMouseEnterIdentifyButton: function(event)
+            {
+                var identifyButton = this.$.identifyButton;
+                identifyButton.classList.remove("icon-normal");
+                identifyButton.classList.add("icon-highlighted");
+            },
+
+            _onMouseLeaveIdentifyButton: function(event)
+            {
+                var identifyButton = this.$.identifyButton;
+                identifyButton.classList.add("icon-normal");
+                identifyButton.classList.remove("icon-highlighted");
+            },
+
             _onSourceClicked: function(event, detail)
             {
                 this.fire('connect-command', this.source);
+            },
+
+            _onIdentifyButtonClicked: function(event, detail)
+            {
+                this.fire('identify-source-command', this.source);
+
+                event.stopPropagation(); // So that we don't toggle the item selection
             },
 
             _onSelectedChanged: function(to, from)
