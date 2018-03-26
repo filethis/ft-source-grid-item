@@ -122,7 +122,7 @@ This element displays a single FileThis document source, suitable for use in gri
         <iron-icon
             id="identifyButton"
             icon="visibility"
-            hidden="true"
+            hidden="[[!showIdentifyButton]]"
             on-tap="_onIdentifyButtonClicked"
             on-mouseover="_onMouseEnterIdentifyButton"
             on-mouseout="_onMouseLeaveIdentifyButton"
@@ -132,9 +132,13 @@ This element displays a single FileThis document source, suitable for use in gri
 
         <paper-tooltip
             for="identifyButton"
+            style="width:110px;"
         >
             Identify website
         </paper-tooltip>
+
+        <!-- Settings -->
+        <ft-global-variable name="ft-source-grid-item-show-identify-button" value="{{showIdentifyButton}}"></ft-global-variable>
 
     </template>
 
@@ -170,7 +174,13 @@ This element displays a single FileThis document source, suitable for use in gri
                     notify: true,
                     value: false,
                     observer: "_onSelectedChanged"
-                }
+                },
+
+                /** True when the identify button is hidden. */
+                _identifyButtonHidden: {
+                    type: Boolean,
+                    value: false
+                },
             },
 
             _onMouseEnterHost: function(event)
