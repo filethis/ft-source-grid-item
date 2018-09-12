@@ -34,7 +34,7 @@ limitations under the License.
     FileThis.SourceGridItemSettingsBehavior = {
 
         observers:[
-            '_onInternalSettingsChanged(showIdentifyButton)',
+            '_onInternalSettingsChanged(ftSourceGridItemShowIdentifyButton)',
         ],
 
         properties: {
@@ -46,11 +46,30 @@ limitations under the License.
              *
              * @type {boolean}
              */
-            showIdentifyButton: {
+            ftSourceGridItemShowIdentifyButton: {
                 type: Object,
-                value: false
+                value: false,
+                notify: true,
             },
 
+        },
+
+        ready: function()
+        {
+            this._applySettings();
+        },
+
+        _applySettings: function()
+        {
+            this._applySettingToProperty("ft-source-grid-item-show-identify-button", "ftSourceGridItemShowIdentifyButton");
+        },
+
+        _applySettingToProperty: function(settingName, propertyName)
+        {
+            var meta = new Polymer.IronMeta({type: "setting", key: settingName});
+            var value = meta.value;
+            if (value !== undefined)
+                this.set(propertyName, value);
         },
 
         _onInternalSettingsChanged: function(to)
@@ -58,36 +77,30 @@ limitations under the License.
             this.fire("internal-settings-changed");
         },
 
-        generateImports: function()
+        generateSettingsElement: function()
         {
             if (!this._hasSettings())
                 return "";
 
-            var imports = "<link rel=\"import\" href=\"../bower_components/ft-source-grid-item/ft-source-grid-item-settings.html\">\n";
-            return imports;
-        },
+            var settings = "\n<ft-source-grid-item-settings";
 
-        generateSettings: function()
-        {
-            if (!this._hasSettings())
-                return "";
+            // Keep alphabetized
+            settings += this._buildSettingAttribute("ft-source-grid-item-show-identify-button", "false");
 
-            var attributes = "";
-            if (this.showIdentifyButton !== true)
-                attributes += '\n    show-identify-button="false"';
-
-            var settings = "";
-
-            settings += "\n<ft-source-grid-item-settings ";
-            settings += attributes;
-            settings += ">\n</ft-source-grid-item-settings>\n";
+            settings += ">\n</ft-source-grid-item-settings\n";
 
             return settings;
         },
 
+        // TODO: Factor out from here and copies in other classes
+        _buildSettingAttribute: function(propertyName, propertyValue)
+        {
+            return '\n    ' + propertyName + '="' + propertyValue + '"';
+        },
+
         _hasSettings: function()
         {
-            if (this.showIdentifyButton !== true)
+            if (this.ftSourceGridItemShowIdentifyButton !== true)
                 return true;
             return false;
         },
