@@ -58,13 +58,8 @@ limitations under the License.
         {
             this.async(function()
             {
-                this._applySettings();
+                this._applySettingToProperty("ft-source-grid-item-show-identify-button", "ftSourceGridItemShowIdentifyButton");
             });
-        },
-
-        _applySettings: function()
-        {
-            this._applySettingToProperty("ft-source-grid-item-show-identify-button", "ftSourceGridItemShowIdentifyButton");
         },
 
         _applySettingToProperty: function(settingName, propertyName)
