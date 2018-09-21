@@ -77,7 +77,7 @@ limitations under the License.
 
         generateSettingsElement: function()
         {
-            if (!this._hasSettings())
+            if (!this.hasSettings())
                 return "";
 
             var settings = "<ft-source-grid-item-settings";
@@ -96,11 +96,16 @@ limitations under the License.
             return '\n    ' + propertyName + '="' + propertyValue + '"';
         },
 
-        _hasSettings: function()
+        hasSettings: function()
         {
             if (this.ftSourceGridItemShowIdentifyButton !== true)
                 return true;
             return false;
+        },
+
+        revertToDefaults: function()
+        {
+            this.ftSourceGridItemShowIdentifyButton = true;
         },
     }
 
