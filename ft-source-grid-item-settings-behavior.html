@@ -75,25 +75,25 @@ limitations under the License.
             this.fire("internal-settings-changed");
         },
 
-        generateSettingsElement: function()
+        generateSettingsElement: function(indent)
         {
             if (!this.hasSettings())
                 return "";
 
-            var settings = "<ft-source-grid-item-settings";
+            var settings = indent + "<ft-source-grid-item-settings";
 
             // Keep alphabetized
-            settings += this._buildSettingAttribute("ft-source-grid-item-show-identify-button", "false");
+            settings += this._buildSettingAttribute("ft-source-grid-item-show-identify-button", "false", indent);
 
-            settings += ">\n</ft-source-grid-item-settings>\n";
+            settings += ">\n" + indent + "</ft-source-grid-item-settings>\n";
 
             return settings;
         },
 
         // TODO: Factor out from here and copies in other classes
-        _buildSettingAttribute: function(propertyName, propertyValue)
+        _buildSettingAttribute: function(propertyName, propertyValue, indent)
         {
-            return '\n    ' + propertyName + '="' + propertyValue + '"';
+            return '\n' + indent + '    ' + propertyName + '="' + propertyValue + '"';
         },
 
         hasSettings: function()
