@@ -1,4 +1,4 @@
-<!--
+/*
 Copyright 2018 FileThis, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,29 +12,33 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
--->
-
-
-<!-- Imports -->
-<link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
-<link rel="import" href="../../paper-checkbox/paper-checkbox.html">
-<link rel="import" href="../../paper-input/paper-input.html">
-<link rel="import" href="../../polymer/polymer.html">
-<link rel="import" href="../../polymer/lib/elements/custom-style.html">
-<link rel="import" href="../ft-source-grid-item-settings-behavior.html">
-<link rel="import" href="../../shadycss/apply-shim.html">
-
-
-<!--
+*/
+/* Imports */
+/**
 
 This element defines a source grid example that allows experimentation with configuration.
 
 @demo
- -->
-<dom-module id="ft-source-grid-item-settings-editor">
+ */
+/*
+  FIXME(polymer-modulizer): the above comments were extracted
+  from HTML and may be out of place here. Review them and
+  then delete this comment!
+*/
+import '@polymer/iron-flex-layout/iron-flex-layout-classes.js';
 
-    <template>
+import '@polymer/paper-checkbox/paper-checkbox.js';
+import '@polymer/paper-input/paper-input.js';
+import '@polymer/polymer/polymer-legacy.js';
+import '@polymer/polymer/lib/elements/custom-style.js';
+import '../ft-source-grid-item-settings-behavior.js';
+import '@webcomponents/shadycss/entrypoints/apply-shim.js';
+import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
+import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 
+Polymer
+({
+  _template: html`
         <style include="iron-flex iron-flex-alignment iron-positioning"></style>
 
         <style>
@@ -59,22 +63,8 @@ This element defines a source grid example that allows experimentation with conf
         <paper-checkbox checked="{{ftSourceGridItemShowIdentifyButton}}">
             Show Identify Button
         </paper-checkbox>
+`,
 
-    </template>
-
-    <script>
-
-        Polymer
-        ({
-            is: 'ft-source-grid-item-settings-editor',
-
-            behaviors: [FileThis.SourceGridItemSettingsBehavior],
-
-        });
-
-    </script>
-
-</dom-module>
-
-new Polymer.IronMeta({type: "setting", key: "ft-source-grid-item-show-identify-button", value: this.ftSourceGridItemShowIdentifyButton});
-
+  is: 'ft-source-grid-item-settings-editor',
+  behaviors: [FileThis.SourceGridItemSettingsBehavior]
+});
