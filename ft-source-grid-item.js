@@ -25,7 +25,7 @@ This element displays a single FileThis document source, suitable for use in gri
   from HTML and may be out of place here. Review them and
   then delete this comment!
 */
-import 'ft-http-behavior/ft-http-behavior.js';
+import '@filethis/ft-http-behavior/ft-http-behavior.js';
 
 import './ft-source-grid-item-settings-behavior.js';
 import '@polymer/iron-flex-layout/iron-flex-layout-classes.js';

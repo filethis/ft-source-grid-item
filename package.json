@@ -1,6 +1,6 @@
 {
   "description": "An element that renders a FileThis source in a grid list.",
-  "name": "ft-source-grid-item",
+  "name": "@filethis/ft-source-grid-item",
   "version": "1.0.24",
   "resolutions": {
     "inherits": "2.0.3",
@@ -15,7 +15,6 @@
     "*.make",
     "*.png",
     "*.svg",
-    ".yalc/",
     "data/",
     "demo/",
     "test/",
@@ -34,11 +33,11 @@
     "@polymer/paper-icon-button": "^3.0.0",
     "@polymer/paper-tooltip": "^3.0.0",
     "@polymer/polymer": "^3.0.0",
-    "ft-confirmation-dialog": "file:.yalc/ft-confirmation-dialog",
-    "ft-element-demo": "file:.yalc/ft-element-demo",
-    "ft-error-behavior": "file:.yalc/ft-error-behavior",
-    "ft-http-behavior": "file:.yalc/ft-http-behavior",
-    "ft-source-grid-item": "file:.yalc/ft-source-grid-item"
+    "@filethis/ft-confirmation-dialog": "^1.0.24",
+    "@filethis/ft-element-demo": "^1.0.15",
+    "@filethis/ft-error-behavior": "^1.0.22",
+    "@filethis/ft-http-behavior": "^1.0.22",
+    "@filethis/ft-source-grid-item": "^1.0.24"
   },
   "devDependencies": {
     "@polymer/iron-component-page": "^4.0.0",
