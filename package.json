@@ -1,7 +1,7 @@
 {
   "description": "An element that renders a FileThis source in a grid list.",
   "name": "@filethis/ft-source-grid-item",
-  "version": "1.0.24",
+  "version": "3.0.0",
   "resolutions": {
     "inherits": "2.0.3",
     "samsam": "1.1.3",
@@ -33,11 +33,11 @@
     "@polymer/paper-icon-button": "^3.0.0",
     "@polymer/paper-tooltip": "^3.0.0",
     "@polymer/polymer": "^3.0.0",
-    "@filethis/ft-confirmation-dialog": "^1.0.24",
-    "@filethis/ft-element-demo": "^1.0.15",
-    "@filethis/ft-error-behavior": "^1.0.22",
-    "@filethis/ft-http-behavior": "^1.0.22",
-    "@filethis/ft-source-grid-item": "^1.0.24"
+    "@filethis/ft-confirmation-dialog": "^3.0.0",
+    "@filethis/ft-element-demo": "^3.0.0",
+    "@filethis/ft-error-behavior": "^3.0.0",
+    "@filethis/ft-http-behavior": "^3.0.0",
+    "@filethis/ft-source-grid-item": "^3.0.0"
   },
   "devDependencies": {
     "@polymer/iron-component-page": "^4.0.0",

@@ -1,7 +1,7 @@
 # Project configuration
 NAME=ft-source-grid-item
 SRC_DIR=
-VERSION=1.0.24
+VERSION=3.0.0
 LOCAL_PORT=3643
 GITHUB_USER=filethis
 GITHUB_USER_ABBREV=ft
